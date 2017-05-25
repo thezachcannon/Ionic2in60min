@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-navbar color='primary'>
+    <ion-title>
+      IonReddit
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item>
+      <ion-label fixed>Category</ion-label>
+      <ion-select (ionChange)='changeCategory()' [(ngModel)]='category' name='category'>
+        <ion-option value='sports'>Sports</ion-option>
+        <ion-option value='gaming'>Gaming</ion-option>
+        <ion-option value='3DS'>3DS</ion-option>
+        <ion-option value='xboxone'>Xbox One</ion-option>
+        <ion-option value='nintendo'>Nintendo</ion-option>
+        <ion-option value='webdev'>Web Dev</ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+  <ion-list>
+    <ion-item *ngFor='let item of items'>
+      <ion-thumbnail *ngIf='item.data.thumbnail' item-left>
+        <img src='{{item.data.thumbnail}}'>
+      </ion-thumbnail>
+      <h2>{{item.data.title}}</h2>
+      <p>
+        <ion-icon name='thumbs-up'>{{item.data.score}}</ion-icon>&nbsp;&nbsp;
+        <ion-icon name='chatboxes'>{{item.data.num_comments}}</ion-icon>
+      </p>
+      <button ion-button clear item-right (click)='viewItem(item.data)'>View</button>
+    </ion-item>
+  </ion-list>
+</ion-content>
